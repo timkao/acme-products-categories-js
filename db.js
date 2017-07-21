@@ -2,20 +2,24 @@ let data = {
   'Foo Category': [
     {
       name: 'foo 1',
+      price: 20,
       id: 1,
     },
     {
       name: 'foo 2',
+      price: 13,
       id: 2
     }
   ],
   'Bar Category': [
     {
       name: 'bar 1',
+      price: 22,
       id: 1
     },
     {
       name: 'bar 2',
+      price: 19,
       id: 2
     }
   ]
@@ -30,6 +34,9 @@ function getProductsByCategory(cat) {
 }
 
 function createProduct(cat, newProduct) {
+  if (newProduct === '') {
+    throw new Error('Please key in Product Name!')
+  }
 
   var idArr = [];
   // check if the product already exist and check which id is used
@@ -44,7 +51,7 @@ function createProduct(cat, newProduct) {
   while (idArr.includes(newId)) {
     newId += 1;
   }
-  data[cat].push({name: newProduct, id: newId})
+  data[cat].push({name: newProduct, id: newId, price: Math.round(100 * Math.random())})
 }
 
 function deleteProduct(cat, droppedId) {
@@ -53,9 +60,11 @@ function deleteProduct(cat, droppedId) {
   });
 }
 
-function updateProduct(cat, target, newPrice) {
+function updateProduct(cat, targetId) {
   getProductsByCategory(cat).forEach(function(product){
-    product.price = newPrice;
+    if (product.id === targetId) {
+      product.price = Math.round(100 * Math.random());
+    }
   });
 }
 
@@ -64,7 +73,17 @@ function deleteCategory(cat) {
 }
 
 function createCategory(str) {
+
+  if (str === '') {
+    throw new Error('Please key in Category Name!')
+  }
+
   var cat = str + ' Category';
+
+  if (getCategoryNames().includes(cat)){
+    throw new Error('The Category already exist!')
+  }
+
   data[cat] = [];
 }
 

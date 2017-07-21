@@ -1,6 +1,7 @@
 <html>
   <head>
     <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css'/>
+    <link rel='stylesheet' href='/style.css';/>
   </head>
   <body>
     <h1 class='well'>Acme Product Categories</h1>
@@ -13,7 +14,7 @@
       {% endfor %}
     </ul>
 
-    <h2>HOME</h2>
+    <h2 class='lead'>HOME</h2>
     <form action='/categories' method="POST">
       <div class='form-group'>
         <input name='newCat' type='text' placeholder="New Category" class='form-control'>

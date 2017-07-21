@@ -10,6 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 nunjucks.configure('views', {noCache: true});
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -22,6 +23,9 @@ app.get('/', function(req, res){
 });
 
 app.use('/categories', router);
+app.use(function(err, req, res, next){
+  res.render('error', {error: err});
+});
 
 app.listen(port, function(){
   console.log(`listening on port ${port}`);

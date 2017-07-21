@@ -28,6 +28,11 @@ router.delete('/:name/products/:id', function(req, res){
   res.redirect('./')
 });
 
+router.post('/:name/products/:id', function(req, res){
+  db.updateProduct(req.params.name, req.params.id * 1);
+  res.redirect('./')
+});
+
 router.delete('/:name', function(req, res){
   db.deleteCategory(req.params.name);
   res.redirect('/');

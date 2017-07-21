@@ -1,6 +1,7 @@
 <html>
   <head>
     <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css'/>
+    <link rel='stylesheet' href='/style.css';/>
   </head>
   <body>
     <h1 class='well'>Acme Product Categories</h1>
@@ -19,7 +20,7 @@
       {% endfor %}
     </ul>
 
-    <h2>Products for {{current}}</h2>
+    <h2 class='lead'>Products for {{current}}</h2>
     <form action='/categories/{{current}}/products' method="POST">
       <div class='form-group'>
         <input name='newProduct' type='text' placeholder="New Product" class='form-control'>
@@ -30,18 +31,23 @@
     </form>
 
     {% for product in products %}
-    <div>
-      <p>{{product.name}}</p>
-      <form action="/categories/{{current}}/products/{{product.id}}?_method=DELETE" method="POST">
+    <div id="productList">
+      <h5>Product Name:</h5>
+      <p id='productInfo' class='lead'><strong>{{product.name}}</strong><br>$ {{product.price}}</p>
+
+      <form class='productForm' action="/categories/{{current}}/products/{{product.id}}" method="POST">
+        <input type='submit' value='New $' class='btn btn-info'>
+      </form>
+      <form class='productForm' action="/categories/{{current}}/products/{{product.id}}?_method=DELETE" method="POST">
         <input type='submit' value='Delete' class='btn btn-danger'>
       </form>
+
     </div>
     {% endfor %}
 
     <form action="/categories/{{current}}?_method=DELETE" method="POST">
-      <input type='submit' value='Delete Category' class='form-control'>
+      <input id='removeCat' type='submit' value='Delete Category' class='form-control'>
     </form>
-
 
   </body>
 </html>

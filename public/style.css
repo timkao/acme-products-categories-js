@@ -1,0 +1,27 @@
+body {
+  margin: 5em 10em 5em 10em
+}
+
+#productList {
+  display: inline-block;
+  border: 0.1em solid;
+  border-color: grey;
+  border-radius: 1em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin-bottom: 1em;
+}
+
+#removeCat {
+  background-color: #FF8B97;
+  color: black;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+#productInfo {
+  margin-bottom: 0.5em;
+}
+
+.productForm {
+  display: inline-block;
+}
