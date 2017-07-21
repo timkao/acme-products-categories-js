@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css'/>
+  </head>
+  <body>
+    <h1 class='well'>Acme Product Categories</h1>
+
+    <ul class= 'nav nav-tabs'>
+      <li class='active'><a href='/'>HOME</a></li>
+      {% for category in categories %}
+      <li><a href='/categories/{{category}}/products'>{{category}}</a></li>
+
+      {% endfor %}
+    </ul>
+
+    <h2>HOME</h2>
+    <form action='/categories' method="POST">
+      <div class='form-group'>
+        <input name='newCat' type='text' placeholder="New Category" class='form-control'>
+      </div>
+      <div class='form-group'>
+        <input type='submit' value='Save' class='btn btn-primary'>
+      </div>
+    </form>
+
+  </body>
+</html>

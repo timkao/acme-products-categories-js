@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css'/>
+  </head>
+  <body>
+    <h1 class='well'>Acme Product Categories</h1>
+
+    <ul class= 'nav nav-tabs'>
+      <li><a href='/'>HOME</a></li>
+
+      {% for category in categories %}
+
+      {% if category === current %}
+      <li class='active'><a href='/categories/{{category}}/products'>{{category}}</a></li>
+      {% else %}
+      <li><a href='/categories/{{category}}/products'>{{category}}</a></li>
+      {% endif %}
+
+      {% endfor %}
+    </ul>
+
+    <h2>Products for {{current}}</h2>
+    <form action='/categories/{{current}}/products' method="POST">
+      <div class='form-group'>
+        <input name='newProduct' type='text' placeholder="New Product" class='form-control'>
+      </div>
+      <div class='form-group'>
+        <input type='submit' value='Save' class='btn btn-primary'>
+      </div>
+    </form>
+
+    {% for product in products %}
+    <div>
+      <p>{{product.name}}</p>
+      <form action="/categories/{{current}}/products/{{product.id}}?_method=DELETE" method="POST">
+        <input type='submit' value='Delete' class='btn btn-danger'>
+      </form>
+    </div>
+    {% endfor %}
+
+    <form action="/categories/{{current}}?_method=DELETE" method="POST">
+      <input type='submit' value='Delete Category' class='form-control'>
+    </form>
+
+
+  </body>
+</html>
